@@ -1,0 +1,76 @@
+- id: '1546882347649'
+  alias: Nightly Dropbox Sync
+  trigger:
+  - at: '1:00:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      addon: 7be23ff5_dropbox_sync
+      input:
+        command: upload
+    service: hassio.addon_stdin
+  - data:
+      message: Nightly snapshot synced to Dropbox
+      title: Nightly Backup Sync
+    service: persistent_notification.create
+- id: '1546883352295'
+  alias: Nightly Snapshot Backup
+  trigger:
+  - at: 0:00:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      name: Nightly Snapshot
+    service: hassio.snapshot_full
+  - data:
+      message: Nightly snapshot backup created successfully
+      title: Nightly Backup Created
+    service: persistent_notification.create
+- id: '1563501303766'
+  alias: Disarm Alarm System at Wakeup
+  trigger:
+  - at: 06:15:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      code: 8950
+      entity_id: alarm_control_panel.home_alarm
+    service: alarm_control_panel.alarm_disarm
+- id: '1563553049474'
+  alias: Torrent Finished Downloading
+  trigger:
+  - event_data: {}
+    event_type: transmission_downloaded_torrent
+    platform: event
+  condition: []
+  action:
+  - data:
+      message: "Torrent finished downloading"
+    service: notify.hassbot
+- id: '1541512032498'
+  alias: 'Set Theme At Startup'
+  initial_state: 'on'
+  trigger:
+   - platform: homeassistant
+     event: start
+  action:
+    service: frontend.set_theme
+    data:
+      name: solo
+- id: '1571522082418'
+  alias: 'Living Room Lights Based On Ambient Light'
+  initial_state: 'on'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ambient_light
+      below: 0.5
+  action:
+    service: light.turn_on
+    data:
+      entity_id:
+        - light.lamp_by_chair
+        - light.lamp_by_window
+        - light.lamp_by_couch

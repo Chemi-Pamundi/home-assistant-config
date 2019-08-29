@@ -1,0 +1,16 @@
+---
+title: Dev
+icon: 'mdi:wrench'
+id: dev
+panel: true
+path: dev
+cards:
+  - column_num: 2
+    column_width: 300
+    layout: horizontal
+    max_columns: 100
+    min_height: 5
+    type: 'custom:layout-card'
+    id: dev-layout
+    cards:
+      - type: custom:theme-maker

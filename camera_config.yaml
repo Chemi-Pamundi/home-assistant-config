@@ -1,0 +1,5 @@
+# IP Camera Support
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+
+# camera: !include_dir_list camera/

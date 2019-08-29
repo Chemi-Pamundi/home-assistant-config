@@ -1,0 +1,14 @@
+#api_password: !secret api_pass
+base_url: hass.keithsolomon.net:8123
+
+#ssl_certificate: /etc/letsencrypt/live/keithsolomon.net/fullchain.pem
+#ssl_key: /etc/letsencrypt/live/keithsolomon.net/privkey.pem
+
+#ssl_certificate: /ssl/fullchain.pem
+#ssl_key: /ssl/privkey.pem
+
+# CORS access is optional
+cors_allowed_origins:
+  - https://reformedreality.com
+  - http://reformedreality.com
+

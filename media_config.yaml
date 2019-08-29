@@ -1,0 +1,10 @@
+# Plex Control
+media_player: !include media-player.yaml
+
+# Apple TV Support
+apple_tv:
+   # - host: 192.168.1.128
+   #   login_id: 00000000-0aa4-392d-8570-094646234f09
+   #   name: Living Room
+   #   start_off: START_OFF_1
+   #   credentials: C7D78938FCA90788:FA67F149D480BD8247379054AB77A2C0A1474F49D0820CE9FC3310B000EA5AE9

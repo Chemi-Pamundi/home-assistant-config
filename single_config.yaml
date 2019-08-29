@@ -1,0 +1,53 @@
+# Single-line component enables
+
+# Lovelace YAML mode
+lovelace:
+  mode: yaml
+
+# Enables the frontend
+frontend:
+  themes: !include theme_midnight.yaml
+
+# Enables configuration UI
+config:
+
+# System Health component
+system_health:
+
+# Discover some devices automatically
+discovery:
+  enable:
+
+# Cloud
+cloud:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Checks for available updates
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Enables a map showing the location of tracked devices
+# map:
+
+# UPNP Support
+upnp:
+
+# Track the sun
+sun:
+
+# Speedtest component
+speedtestdotnet:
+
+# Text to speech
+tts:
+  - platform: google_translate
+    service_name: google_say

@@ -1,0 +1,59 @@
+- id: '1546882347649'
+  alias: Nightly Dropbox Sync
+  trigger:
+  - at: '1:00:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      addon: 7be23ff5_dropbox_sync
+      input:
+        command: upload
+    service: hassio.addon_stdin
+  - data:
+      message: Nightly snapshot synced to Dropbox
+      title: Nightly Backup Sync
+    service: persistent_notification.create
+- id: '1546883352295'
+  alias: Nightly Snapshot Backup
+  trigger:
+  - at: 0:00:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      name: Nightly Snapshot
+    service: hassio.snapshot_full
+  - data:
+      message: Nightly snapshot backup created successfully
+      title: Nightly Backup Created
+    service: persistent_notification.create
+- id: '1563501303766'
+  alias: Disarm Alarm System at Wakeup
+  trigger:
+  - at: 06:15:00
+    platform: time
+  condition:
+    condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - data:
+      code: 8950
+      entity_id: alarm_control_panel.home_alarm
+    service: alarm_control_panel.alarm_disarm
+- id: '1563553049474'
+  alias: Torrent Finished Downloading
+  trigger:
+  - event_data: {}
+    event_type: transmission_downloaded_torrent
+    platform: event
+  condition: []
+  action:
+  - data:
+      message: Torrent finished downloading
+    service: notify.hassbot

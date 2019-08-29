@@ -1,0 +1,146 @@
+---
+title: Network
+icon: 'mdi:lan'
+id: network
+panel: true
+path: network
+cards:
+  - column_num: 2
+    column_width: 300
+    layout: horizontal
+    max_columns: 100
+    min_height: 5
+    type: 'custom:layout-card'
+    id: network-layout
+    cards:
+      # Speed Test
+      - type: custom:vertical-stack-in-card
+        title: Speedtest
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.speedtest_download
+                    name: Download
+                icon: mdi:download
+                color_thresholds:
+                  - value: 50
+                    color: '#bf4040'
+                  - value: 80
+                    color: '#ffde00'
+                  - value: 100
+                    color: '#40bf40'
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.speedtest_ping
+                    name: Ping
+                icon: mdi:speedometer
+                color_thresholds:
+                  - value: 5
+                    color: '#40bf40'
+                  - value: 10
+                    color: '#ffde00'
+                  - value: 20
+                    color: '#c78a3a'
+                  - value: 50
+                    color: '#bf4040'
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.speedtest_upload
+                    name: Upload
+                icon: mdi:upload
+                color_thresholds:
+                  - value: 5
+                    color: '#bf4040'
+                  - value: 10
+                    color: '#ffde00'
+                  - value: 25
+                    color: '#40bf40'
+          - type: entities
+            title: Update Speedtest
+            show_header_toggle: false
+            entities:
+              - type: call-service
+                entity: speedtestdotnet.speedtest
+                service: speedtestdotnet.speedtest
+                name: GO!
+                icon: mdi:refresh
+      # Transmission
+      - type: custom:vertical-stack-in-card
+        title: Transmission
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                title: Total
+                show_header_toggle: false
+                entities:
+                  - entity: sensor.transmission_total_torrents
+                    name: " "
+                    show_icon: false
+              - type: entities
+                title: Active
+                show_header_toggle: false
+                entities:
+                  - entity: sensor.transmission_active_torrents
+                    name: " "
+                    show_icon: false
+              # - type: entities
+              #   title: Completed
+              #   show_header_toggle: false
+              #   entities:
+              #     - entity: sensor.transmission_completed_torrents
+              #       name: " "
+              #       show_icon: false
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.transmission_down_speed
+                    name: Download Speed
+                    show_fill: none
+                    color: "#ff0000"
+                icon: mdi:download
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.transmission_up_speed
+                    name: Upload Speed
+                    show_fill: none
+                    color: "#0000ff"
+                icon: mdi:upload
+          - type: entities
+            # title: Turtle Mode
+            show_header_toggle: false
+            entities:
+              - entity: switch.transmission
+                name: Turtle Mode
+      # NZBGet
+      - type: custom:vertical-stack-in-card
+        title: NZBGet
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                title: Total
+                show_header_toggle: false
+                entities:
+                  - entity: sensor.nzbget_queue_size
+                    name: " "
+                    show_icon: false
+              - type: entities
+                title: Remaining
+                show_header_toggle: false
+                entities:
+                  - entity: sensor.nzbget_size
+                    name: " "
+                    show_icon: false
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.nzbget_speed
+                    name: Download Speed
+                    show_fill: none
+                    color: "#ff0000"
+                icon: mdi:download

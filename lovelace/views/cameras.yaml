@@ -1,0 +1,32 @@
+---
+title: Cameras
+icon: 'mdi:cctv'
+id: cameras
+panel: true
+path: cameras
+cards:
+  - column_num: 2
+    column_width: 300
+    layout: horizontal
+    max_columns: 100
+    min_height: 5
+    type: 'custom:layout-card'
+    cards:
+      # - title: Front
+      #   camera_image: camera.front
+      #   entity: camera.front
+      #   show_info: true
+      #   tap_action: dialog
+      #   type: picture-entity
+      # - title: Garage
+      #   camera_image: camera.garage
+      #   entity: camera.garage
+      #   show_info: true
+      #   tap_action: dialog
+      #   type: picture-entity
+      - name: Front
+        entity: camera.front
+        type: 'custom:camera-card'
+      - name: Garage
+        entity: camera.garage
+        type: 'custom:camera-card'

@@ -1,0 +1,11 @@
+# Configurator
+# configurator:
+#     title: Configurator
+#     icon: mdi:wrench
+#     url: http://hassio.local:3218
+
+# MotionEye
+# motioneye:
+#     title: MotionEye
+#     icon: mdi:cctv
+#     url: http://hassio.local:8765

@@ -1,0 +1,7 @@
+sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
+
+# Transmission Sensor
+transmission:
+  host: !secret fsrv_ip
+  scan_interval: 15

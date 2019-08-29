@@ -1,0 +1,12 @@
+Shaw Communications - id=4244
+Voyageur Internet - id=1493
+Bell Mobility - id=17395
+TELUS - id=18692
+Commstream Communications - id=3077
+LES.NET - id=4297
+Bell MTS - id=9015
+VOI Network Solutions - id=6394
+Infotec Manitoba - id=21517
+Fastnet Communications - id=7290
+Bell Canada - id=25266
+Full Throttle Networks - id=15936

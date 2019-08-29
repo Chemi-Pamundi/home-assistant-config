@@ -1,0 +1,65 @@
+solo:
+  # Main colors
+  primary-color: '#1985A1'
+  accent-color: '#4C5C68'
+  dark-primary-color: 'var(--accent-color)'
+  light-primary-color: 'var(--accent-color)'
+
+  # Text colors
+  primary-text-color: '#DCDCDD'
+  text-primary-color: 'var(--primary-text-color)'
+  secondary-text-color: '#C5C3C6'
+  disabled-text-color: '#7F848E'
+  label-badge-border-color: 'green'
+
+  # Background colors
+  primary-background-color: '#46494C'
+  secondary-background-color: '#46494C'
+  divider-color: 'rgba(0, 0, 0, .12)'
+
+  # Table rows
+  table-row-background-color: '#353840'
+  table-row-alternative-background-color: '#3E424B'
+
+  # Nav Menu
+  paper-listbox-color: 'var(--primary-color)'
+  paper-listbox-background-color: '#2E333A'
+  paper-grey-50: 'var(--primary-text-color)'
+  paper-grey-200: '#414A59'
+
+  # Paper card
+  paper-card-header-color: 'var(--accent-color)'
+  paper-card-background-color: 'var(--accent-color)'
+  paper-dialog-background-color: 'var(--accent-color)'
+  paper-item-icon-color: 'var(--primary-text-color)'
+  paper-item-icon-active-color: '#F9C536'
+  paper-item-icon_-_color: 'green'
+  paper-item-selected_-_background-color: '#434954'
+  paper-tabs-selection-bar-color: 'green'
+
+  # Labels
+  label-badge-red: 'var(--accent-color)'
+  label-badge-text-color: 'var(--primary-text-color)'
+  label-badge-background-color: '#2E333A'
+
+  # Switches
+  paper-toggle-button-checked-button-color: '#1985A1'
+  paper-toggle-button-checked-bar-color: '#1985A1'
+  paper-toggle-button-checked-ink-color: '#1985A1'
+  paper-toggle-button-unchecked-button-color: 'var(--disabled-text-color)'
+  paper-toggle-button-unchecked-bar-color: 'var(--disabled-text-color)'
+  paper-toggle-button-unchecked-ink-color: 'var(--disabled-text-color)'
+
+  # Sliders
+  paper-slider-knob-color: '#1985A1'
+  paper-slider-knob-start-color: '#1985A1'
+  paper-slider-pin-color: '#1985A1'
+  paper-slider-active-color: '#1985A1'
+  paper-slider-container-color: 'linear-gradient(var(--primary-background-color), var(--secondary-background-color)) no-repeat'
+  paper-slider-secondary-color: 'var(--secondary-background-color)'
+  paper-slider-disabled-active-color: 'var(--disabled-text-color)'
+  paper-slider-disabled-secondary-color: 'var(--disabled-text-color)'
+
+  # Google colors
+  google-red-500: '#1985A1'
+  google-green-500: '#39E949'

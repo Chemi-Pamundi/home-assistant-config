@@ -1,0 +1,203 @@
+# Weather prediction
+- platform: darksky
+  api_key: !secret darksky_key
+  units: ca
+  forecast:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+  monitored_conditions:
+    - icon
+    - summary
+    - nearest_storm_distance
+    - nearest_storm_bearing
+    - humidity
+    - temperature
+    - temperature_high
+    - temperature_low
+    - apparent_temperature
+    - apparent_temperature_high
+    - apparent_temperature_low
+    - wind_speed
+    - wind_bearing
+    - precip_type
+    - precip_probability
+    - precip_accumulation
+    - precip_intensity
+    - precip_intensity_max
+    - uv_index
+    - daily_summary
+    - pressure
+    - visibility
+    - cloud_cover
+  scan_interval:
+    minutes: 5
+
+# DateTime Sensor
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'date_time_iso'
+    - 'time_date'
+    - 'time_utc'
+    - 'beat'
+
+#### Ambient Light
+- platform: template
+  sensors:
+    ambient_light:
+      friendly_name: 'Ambient Light'
+      value_template: '{{ "%.2f"|format((states.sun.sun.attributes.elevation/24)*((states.sun.sun.attributes.elevation/24)+(1-(states.sensor.dark_sky_cloud_coverage.state|int/100)))) }}'
+
+# Sonarr Upcoming
+- platform: sonarr_upcoming_media
+  api_key: !secret snrr_key
+  host: !secret fsrv_ip
+  port: 8989
+  days: 5
+  ssl: false
+  max: 5
+
+# Plex Recently Added
+- platform: plex_recently_added
+  token: !secret plex_key
+  host: !secret fsrv_ip
+  port: 32400
+  ssl: false
+  ssl_cert: false
+  download_images: true
+  img_dir: '/img-tmp/'
+  max: 5
+  section_types:
+  - movie
+  - show
+
+# Tautulli Sensor
+- platform: tautulli
+  api_key: !secret taut_key
+  host: 192.168.1.7
+
+#NZBGet Sensor
+- platform: nzbget
+  host: !secret fsrv_ip
+  monitored_variables:
+    - article_cache
+    - download_size
+    - remaining_size
+    - download_rate
+    - download_paused
+
+# System Monitor Sensors
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /
+    - type: memory_use_percent
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
+    - type: processor_use
+    - type: last_boot
+
+# HAss Machine CPU Temperature
+# Core 0
+- platform: command_line
+  name: CPU Core 0 Temperature
+  command: "cat /sys/class/thermal/thermal_zone0/temp"
+  unit_of_measurement: "°C"
+  value_template: '{{ (value | multiply(0.001)) | round(1) }}'
+# Core 1
+- platform: command_line
+  name: CPU Core 1 Temperature
+  command: "cat /sys/class/thermal/thermal_zone1/temp"
+  unit_of_measurement: "°C"
+  value_template: '{{ (value | multiply(0.001)) | round(1) }}'
+
+# HAss Database Size
+- platform: sql
+  db_url: !secret db_url
+  queries:
+  - name: Database Size
+    query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1048576, 2) "value" FROM information_schema.tables WHERE table_schema="hassio" GROUP BY table_schema'
+    column: 'value'
+    unit_of_measurement: MB
+
+# Glances - Media Server
+- platform: glances
+  host: 192.168.1.7
+  name: Media Server
+  version: 3
+  resources:
+    - 'disk_use'
+    - 'disk_use_percent'
+    - 'disk_free'
+    - 'cpu_use_percent'
+    - 'processor_load'
+    - 'memory_use'
+    - 'memory_use_percent'
+
+# Media Server CPU Temps from Glances
+# Core 0
+- platform: rest
+  name: Media Server Core 0 Temp
+  resource: http://192.168.1.7:61208/api/3/sensors/label/Core%200
+  device_class: temperature
+  unit_of_measurement: "°C"
+  value_template: '{{ value_json["Core 0"][0].value }}'
+# Core 1
+- platform: rest
+  name: Media Server Core 1 Temp
+  resource: http://192.168.1.7:61208/api/3/sensors/label/Core%201
+  device_class: temperature
+  unit_of_measurement: "°C"
+  value_template: '{{ value_json["Core 1"][0].value }}'
+
+# Media Server Uptime from Glances
+- platform: rest
+  name: Media Server Uptime
+  resource: http://192.168.1.7:61208/api/3/uptime
+  value_template: '{{ value | replace("\"","") }}'
+
+# Glances - Dev Server
+- platform: glances
+  host: 192.168.1.75
+  name: Dev Server
+  version: 3
+  resources:
+    - 'disk_use'
+    - 'disk_use_percent'
+    - 'disk_free'
+    - 'cpu_use_percent'
+    - 'processor_load'
+    - 'memory_use'
+    - 'memory_use_percent'
+
+# Dev Server CPU Temps from Glances
+# Core 0
+- platform: rest
+  name: Dev Server Core 0 Temp
+  resource: http://192.168.1.75:61208/api/3/sensors/label/Core%200
+  device_class: temperature
+  unit_of_measurement: "°C"
+  value_template: '{{ value_json["Core 0"][0].value }}'
+# Core 1
+- platform: rest
+  name: Dev Server Core 1 Temp
+  resource: http://192.168.1.75:61208/api/3/sensors/label/Core%201
+  device_class: temperature
+  unit_of_measurement: "°C"
+  value_template: '{{ value_json["Core 1"][0].value }}'
+
+# Dev Server Uptime from Glances
+- platform: rest
+  name: Dev Server Uptime
+  resource: http://192.168.1.75:61208/api/3/uptime
+  value_template: '{{ value | replace("\"","") }}'
+
+# Work Computer Sensor
+- platform: openhardwaremonitor
+  host: 192.168.1.69

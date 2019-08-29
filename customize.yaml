@@ -1,0 +1,8 @@
+# media_player.firefox:
+#   hidden: true
+
+# input_boolean.weather:
+#   custom_ui_state_card: custom-weather-card
+#   config:
+#     weather: weather.yweather
+#     sun: sun.sun

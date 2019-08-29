@@ -1,0 +1,21 @@
+resources: !include lovelace/resources.yaml
+
+title: Our House
+
+cch:
+  hide_help: true
+  hide_config: true
+  options: clock
+  clock_date: true
+  voice: hide
+  swipe: true
+  swipe_animate: flip
+
+views:
+  - !include lovelace/views/home.yaml
+  - !include lovelace/views/network.yaml
+  - !include lovelace/views/media.yaml
+  # - !include lovelace/views/cameras.yaml
+  - !include lovelace/views/servers.yaml
+  # - !include lovelace/views/octoprint.yaml
+  - !include lovelace/views/dev.yaml

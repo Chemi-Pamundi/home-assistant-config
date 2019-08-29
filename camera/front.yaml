@@ -1,0 +1,12 @@
+# platform: ffmpeg
+# input: -rtsp_transport tcp -i rtsp://192.168.1.16:554/live/ch0
+# extra_arguments: -pred 1 -q:v 2
+# name: Front
+platform: onvif
+host: 192.168.1.16
+# port: 5000
+# profile: 1
+username: !secret cam_user
+password: !secret cam_pass
+extra_arguments: -q:v 2
+name: Front

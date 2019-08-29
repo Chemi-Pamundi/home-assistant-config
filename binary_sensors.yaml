@@ -1,0 +1,23 @@
+# Alarm System Sensors
+- platform: template
+  sensors:
+    alarm_fdoor:
+      friendly_name: "Front Door"
+      device_class: door
+      value_template: "{{ state_attr('alarm_control_panel.home_alarm', 'sensor_status')|regex_search('Front Entry Door is Open', ignorecase=TRUE) }}"
+    alarm_brdoor:
+      friendly_name: "Bedroom Door"
+      device_class: door
+      value_template: "{{ state_attr('alarm_control_panel.home_alarm', 'sensor_status')|regex_search('Back Door is Open', ignorecase=TRUE) }}"
+    alarm_sdoor:
+      friendly_name: "Side Door"
+      device_class: door
+      value_template: "{{ state_attr('alarm_control_panel.home_alarm', 'sensor_status')|regex_search('Side Door is Open', ignorecase=TRUE) }}"
+    alarm_hall:
+      friendly_name: "Hallway Motion"
+      device_class: motion
+      value_template: "{{ state_attr('alarm_control_panel.home_alarm', 'sensor_status')|regex_search('Hallway Motion Detector is Activated', ignorecase=TRUE) }}"
+    alarm_bsmnt:
+      friendly_name: "Basement Motion"
+      device_class: motion
+      value_template: "{{ state_attr('alarm_control_panel.home_alarm', 'sensor_status')|regex_search('Basement Motion Detector is Activated', ignorecase=TRUE) }}"

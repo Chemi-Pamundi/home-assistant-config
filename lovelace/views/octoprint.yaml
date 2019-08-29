@@ -1,0 +1,40 @@
+---
+title: OctoPrint
+icon: 'mdi:gauge-low'
+id: octoprint
+panel: true
+path: octoprint
+cards:
+  - column_num: 3
+    column_width: 300
+    layout: horizontal
+    max_columns: 100
+    min_height: 5
+    type: 'custom:layout-card'
+    cards:
+      - title: Bed Temps
+        columns: 2
+        entities:
+          - entity: sensor.octoprint_target_bed_temp
+            name: Bed Target
+          - entity: sensor.octoprint_actual_bed_temp
+            name: Bed Actual
+        show_state: true
+        type: glance
+      - name: Job Completion
+        entity: sensor.octoprint_job_percentage
+        severity:
+          green: 100
+          red: 0
+          yellow: 50
+        type: gauge
+        unit: '%'
+      - title: Hotend Temps
+        columns: 2
+        entities:
+          - entity: sensor.octoprint_target_tool0_temp
+            name: Hotend Target
+          - entity: sensor.octoprint_actual_tool0_temp
+            name: Hotend Actual
+        show_state: true
+        type: glance

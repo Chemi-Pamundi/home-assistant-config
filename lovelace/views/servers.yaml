@@ -1,0 +1,390 @@
+---
+title: Servers
+icon: 'mdi:server-network'
+id: servers
+panel: true
+path: servers
+cards:
+  - column_num: 2
+    column_width: 300
+    layout: horizontal
+    max_columns: 100
+    min_height: 5
+    type: 'custom:layout-card'
+    id: servers-layout
+    cards:
+      # HAss Server
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: entities
+            title: HAss
+            show_header_toggle: false
+            entities:
+              - entity: sensor.last_boot
+                name: Last boot
+                icon: mdi:clock
+              # - entity: binary_sensor.internet
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.processor_use
+                    name: CPU
+                icon: mdi:memory
+                color_thresholds:
+                  - value: 0
+                    color: '#40bf40'
+                  - value: 10
+                    color: '#ffde00'
+                  - value: 50
+                    color: '#bf4040'
+              - type: custom:mini-graph-card
+                name: CPU Temps
+                entities:
+                  - entity: sensor.cpu_core_0_temperature
+                    name: Core 0 Temp
+                    show_fill: false
+                    color: '#ff0000'
+                  - entity: sensor.cpu_core_1_temperature
+                    name: Core 1 Temp
+                    show_fill: false
+                    color: '#0000ff'
+                show_fill: false
+                decimals: 0
+                color_thresholds:
+                  - value: 0
+                    color: '#cccccc'
+                  - value: 60
+                    color: '#ffde00'
+                  - value: 60
+                    color: '#bf4040'
+          - type: custom:bar-card
+            entities:
+              - entity: sensor.disk_use_percent
+                icon: mdi:harddisk
+                title: HDD
+                severity:
+                - value: 50
+                  color: '#40bf40'
+                - value: 80
+                  color: '#ffde00'
+                - value: 100
+                  color: '#bf4040'
+              - entity: sensor.memory_use_percent
+                icon: mdi:memory
+                title: RAM
+                severity:
+                - value: 20
+                  color: '#40bf40'
+                - value: 50
+                  color: 'var(--primary-color)'
+                - value: 100
+                  color: '#bf4040'
+              - entity: sensor.database_size
+                icon: mdi:database
+                title: Database Size
+                max: 1000000
+                # severity:
+                # - value: 20
+                #   color: '#40bf40'
+                # - value: 50
+                #   color: 'var(--primary-color)'
+                # - value: 100
+                #   color: '#bf4040'
+            height: 40px
+            columns: 1
+            entity_config: true
+            show_icon: true
+            title_position: inside
+            # title_position: 'off'
+            align: split
+            rounding: 5px
+            padding: 5px
+            background_style:
+              background: "#000"
+              opacity: 0.05
+            icon_style:
+              height: 34px
+              width: 34px
+              filter: "none"
+            value_style:
+              text-shadow: "none"
+              font-size: "18px"
+              font-weight: "normal"
+              color: "var(--primary-text-color)"
+            title_style:
+              text-shadow: "none"
+              color: "var(--primary-text-color)"
+              # color: "#fff"
+              font-weight: "normal"
+      # Media Server
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: entities
+            title: Media Server
+            show_header_toggle: false
+            entities:
+              - entity: sensor.media_server_uptime
+                name: Uptime
+                icon: mdi:clock
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.media_server_cpu_used
+                    name: CPU
+                icon: mdi:memory
+                color_thresholds:
+                  - value: 0
+                    color: '#40bf40'
+                  - value: 10
+                    color: '#ffde00'
+                  - value: 50
+                    color: '#bf4040'
+              - type: custom:mini-graph-card
+                name: CPU Temps
+                entities:
+                  - entity: sensor.media_server_core_0_temp
+                    name: Core 0 Temp
+                    color: '#ff0000'
+                    show_fill: false
+                  - entity: sensor.media_server_core_1_temp
+                    name: Core 1 Temp
+                    color: '#0000ff'
+                    show_fill: false
+                show_fill: false
+                decimals: 0
+                color_thresholds:
+                  - value: 0
+                    color: '#cccccc'
+                  - value: 60
+                    color: '#ffde00'
+                  - value: 60
+                    color: '#bf4040'
+          - type: custom:bar-card
+            entities:
+              - entity: sensor.media_server_disk_used_percent
+                icon: mdi:harddisk
+                title: HDD
+                severity:
+                - value: 50
+                  color: '#40bf40'
+                - value: 80
+                  color: '#ffde00'
+                - value: 100
+                  color: '#bf4040'
+              - entity: sensor.media_server_ram_used_percent
+                icon: mdi:memory
+                title: RAM
+                severity:
+                - value: 20
+                  color: '#40bf40'
+                - value: 50
+                  color: 'var(--primary-color)'
+                - value: 100
+                  color: '#bf4040'
+            height: 40px
+            columns: 1
+            entity_config: true
+            show_icon: true
+            title_position: inside
+            # title_position: 'off'
+            align: split
+            rounding: 5px
+            padding: 5px
+            background_style:
+              background: "#000"
+              opacity: 0.05
+            icon_style:
+              height: 34px
+              width: 34px
+              filter: "none"
+            value_style:
+              text-shadow: "none"
+              font-size: "18px"
+              font-weight: "normal"
+              color: "var(--primary-text-color)"
+            title_style:
+              text-shadow: "none"
+              color: "var(--primary-text-color)"
+              # color: "#fff"
+              font-weight: "normal"
+      # Dev Server
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: entities
+            title: Dev Server
+            show_header_toggle: false
+            entities:
+              - entity: sensor.dev_server_uptime
+                name: Uptime
+                icon: mdi:clock
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.dev_server_cpu_used
+                    name: CPU
+                icon: mdi:memory
+                color_thresholds:
+                  - value: 0
+                    color: '#40bf40'
+                  - value: 10
+                    color: '#ffde00'
+                  - value: 50
+                    color: '#bf4040'
+              - type: custom:mini-graph-card
+                name: CPU Temps
+                entities:
+                  - entity: sensor.dev_server_core_0_temp
+                    name: Core 0 Temp
+                    color: '#ff0000'
+                    show_fill: false
+                  - entity: sensor.dev_server_core_1_temp
+                    name: Core 1 Temp
+                    color: '#0000ff'
+                    show_fill: false
+                show_fill: false
+                decimals: 0
+                color_thresholds:
+                  - value: 0
+                    color: '#cccccc'
+                  - value: 60
+                    color: '#ffde00'
+                  - value: 60
+                    color: '#bf4040'
+          - type: custom:bar-card
+            entities:
+              - entity: sensor.dev_server_disk_used_percent
+                icon: mdi:harddisk
+                title: HDD
+                severity:
+                - value: 50
+                  color: '#40bf40'
+                - value: 80
+                  color: '#ffde00'
+                - value: 100
+                  color: '#bf4040'
+              - entity: sensor.dev_server_ram_used_percent
+                icon: mdi:memory
+                title: RAM
+                severity:
+                - value: 20
+                  color: '#40bf40'
+                - value: 50
+                  color: 'var(--primary-color)'
+                - value: 100
+                  color: '#bf4040'
+            height: 40px
+            columns: 1
+            entity_config: true
+            show_icon: true
+            title_position: inside
+            # title_position: 'off'
+            align: split
+            rounding: 5px
+            padding: 5px
+            background_style:
+              background: "#000"
+              opacity: 0.05
+            icon_style:
+              height: 34px
+              width: 34px
+              filter: "none"
+            value_style:
+              text-shadow: "none"
+              font-size: "18px"
+              font-weight: "normal"
+              color: "var(--primary-text-color)"
+            title_style:
+              text-shadow: "none"
+              color: "var(--primary-text-color)"
+              # color: "#fff"
+              font-weight: "normal"
+      # Work Machine
+      - type: custom:vertical-stack-in-card
+        title: Work PC
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.anduril_intel_core_i7_3770_load_cpu_total
+                    name: CPU
+                icon: mdi:memory
+                color_thresholds:
+                  - value: 0
+                    color: '#40bf40'
+                  - value: 35
+                    color: '#ffde00'
+                  - value: 60
+                    color: '#bf4040'
+              - type: custom:mini-graph-card
+                name: CPU Temps
+                entities:
+                  - entity: sensor.anduril_intel_core_i7_3770_temperatures_cpu_core_1
+                    name: Core 0 Temp
+                    color: '#ff0000'
+                    show_fill: false
+                  - entity: sensor.anduril_intel_core_i7_3770_temperatures_cpu_core_2
+                    name: Core 1 Temp
+                    color: '#0000ff'
+                    show_fill: false
+                  - entity: sensor.anduril_intel_core_i7_3770_temperatures_cpu_core_3
+                    name: Core 2 Temp
+                    color: '#008000'
+                    show_fill: false
+                  - entity: sensor.anduril_intel_core_i7_3770_temperatures_cpu_core_4
+                    name: Core 3 Temp
+                    color: '#FFFF00'
+                    show_fill: false
+                show_fill: false
+                decimals: 0
+          - type: custom:bar-card
+            entities:
+              - entity: sensor.anduril_hitachi_hua722020ala331_load_used_space
+                icon: mdi:harddisk
+                title: HDD
+                severity:
+                  - value: 50
+                    color: '#40bf40'
+                  - value: 70
+                    color: '#ffde00'
+                  - value: 90
+                    color: '#bf4040'
+              - entity: sensor.anduril_generic_memory_load_memory
+                icon: mdi:memory
+                title: RAM
+                severity:
+                  - value: 20
+                    color: '#40bf40'
+                  - value: 50
+                    color: '#ffde00'
+                  - value: 80
+                    color: '#bf4040'
+            height: 40px
+            columns: 1
+            entity_config: true
+            show_icon: true
+            title_position: inside
+            # title_position: 'off'
+            align: split
+            rounding: 5px
+            padding: 5px
+            background_style:
+            background: "#000"
+            opacity: 0.05
+            icon_style:
+              height: 34px
+              width: 34px
+              filter: "none"
+            value_style:
+              text-shadow: "none"
+              font-size: "18px"
+              font-weight: "normal"
+              color: "var(--primary-text-color)"
+            title_style:
+              text-shadow: "none"
+              color: "var(--primary-text-color)"
+              # color: "#fff"
+              font-weight: "normal"

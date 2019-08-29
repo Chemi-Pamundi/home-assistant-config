@@ -1,0 +1,4 @@
+living_room:
+  - light.lamp_by_chair
+  - light.lamp_by_window
+  - light.lamp_by_couch

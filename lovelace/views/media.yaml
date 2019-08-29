@@ -1,0 +1,62 @@
+---
+title: Media
+icon: 'mdi:music'
+id: media
+panel: true
+path: media
+cards:
+  - column_num: 3
+    column_width: 300
+    layout: horizontal
+    max_columns: 5
+    min_height: 5
+    type: 'custom:layout-card'
+    id: media-layout
+    cards:
+      # Living Room
+      - type: custom:vertical-stack-in-card
+        cards:
+          - name: Google Home
+            type: custom:mini-media-player
+            entity: media_player.googlehome9424
+            artwork: cover
+            power_color: true
+            hide_volume: false
+            show_progress: true
+            id: google-home
+          - type: custom:roku-card
+            entity: media_player.livingroom_tv
+            name: Livingroom TV
+            theme: darkpurple
+            tv: true
+      # Upcoming & Recently Downloaded Media
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:upcoming-media-card
+            entity: sensor.sonarr_upcoming_media
+            title: Sonarr Upcoming
+            image_style: fanart
+            max: 3
+            id: sonarr-upcoming
+          - type: custom:upcoming-media-card
+            entity: sensor.plex_recently_added
+            title: Plex Recently Added
+            image_style: fanart
+            max: 3
+            id: plex-recent
+      # Spotify & Basement Roku
+      - type: custom:vertical-stack-in-card
+        cards:
+          - name: Spotify Player
+            type: custom:mini-media-player
+            entity: media_player.spotify
+            artwork: cover
+            power_color: true
+            hide_volume: true
+            show_progress: true
+            id: spotify-player
+          - type: custom:roku-card
+            entity: media_player.roku_premiere
+            name: Basement TV
+            theme: darkpurple
+            tv: false
